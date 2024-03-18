@@ -5,6 +5,7 @@ import { z } from 'zod'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { toast } from 'sonner'
 
 const signInForm = z.object({
     email: z.string().email(),
@@ -16,6 +17,7 @@ export function SignIn() {
     const { register, handleSubmit, formState: { isSubmitting } } = useForm<signInForm>()
 
     function handleSignIn(data: signInForm) {
+        toast.success(`teste ${data.email}`)
         console.log(data)
     }
 
