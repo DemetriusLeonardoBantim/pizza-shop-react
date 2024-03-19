@@ -1,12 +1,11 @@
-import { ComponentProps } from 'react'
-import { LinkProps } from 'react-router-dom'
+import { Link, LinkProps } from 'react-router-dom'
 
 export type NavLinkProps = LinkProps
 
 export function NavLink(props: NavLinkProps) {
     return (
-        <div>
+        <Link {...props} className='flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground'>
 
-        </div>
+        </Link>
     )
 }
