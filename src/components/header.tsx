@@ -18,7 +18,7 @@ export function Header(props: HeaderProps) {
                         Inicio
                     </Link>
 
-                    <Link to="/">
+                    <Link to="/orders">
                         <UtensilsCrossed className="h-4 w-4" />
                         Pedidos
                     </Link>
