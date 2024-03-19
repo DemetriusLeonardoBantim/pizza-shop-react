@@ -29,16 +29,18 @@ export function Orders() {
                     <Table>
                         <TableHeader>
                             <TableRow>
+                                <TableHead className='w-[64px]'>
 
-                                <TableHead>
+                                </TableHead>
+                                <TableHead className='w-[140px]'>
                                     Identificador
                                 </TableHead>
 
-                                <TableHead>
+                                <TableHead className='w-[180px]'>
                                     Realizado há
                                 </TableHead>
 
-                                <TableHead>
+                                <TableHead className='w-[140px]'>
                                     Status
                                 </TableHead>
 
@@ -46,15 +48,15 @@ export function Orders() {
                                     Cliente
                                 </TableHead>
 
-                                <TableHead>
+                                <TableHead className='w-[140px]'>
                                     Total do pedido
                                 </TableHead>
 
-                                <TableHead>
+                                <TableHead className='w-[164px]'>
 
                                 </TableHead>
 
-                                <TableHead>
+                                <TableHead className='w-[132px]'>
 
                                 </TableHead>
                             </TableRow>
