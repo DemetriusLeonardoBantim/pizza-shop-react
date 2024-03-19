@@ -4,6 +4,7 @@ import { z } from 'zod'
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { Link } from 'react-router-dom'
 import { Label } from '@/components/ui/label'
 import { toast } from 'sonner'
 
@@ -25,6 +26,11 @@ export function SignIn() {
         <>
             <Helmet title='Login' />
             <div className="p-8">
+                <Button asChild className='absolute right-4 top-8'>
+                    <Link to="/sign-up" className=''>
+                        Novo estabelecimento
+                    </Link>
+                </Button>
                 <div className='w-[350px] flex-col justify-center gap-6'>
                     <div className='flex flex-col gap-2 text-center'>
                         <h1 className='text-2xl font-semibold tracking-tight'>
