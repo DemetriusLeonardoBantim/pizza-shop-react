@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { toast } from 'sonner'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const SignUpForm = z.object({
     restauranteName: z.string(),
@@ -19,9 +19,17 @@ type SignUpForm = z.infer<typeof SignUpForm>
 
 export function SignUp() {
     const { register, handleSubmit, formState: { isSubmitting } } = useForm<SignUpForm>()
+    const navigate = useNavigate()
 
     function handleSignUp(data: SignUpForm) {
-        toast.success(`teste ${data.email}, ${data.managerName}, ${data.phone}`)
+
+
+        toast.success(`teste ${data.email}, ${data.managerName}, ${data.phone}`, {
+            action: {
+                label: 'Login',
+                onClick: () => navigate('/sign-in')
+            }
+        })
         console.log(data)
     }
 
