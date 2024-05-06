@@ -1,5 +1,5 @@
 import { CardHeader, Card, CardTitle, CardContent } from '@/components/ui/card'
-import { DollarSign } from 'lucide-react'
+import { Utensils } from 'lucide-react'
 
 export function DayOrdersAmountCard() {
     return (
@@ -8,7 +8,7 @@ export function DayOrdersAmountCard() {
                 <CardTitle className="text-base font-semibold">
                     Periodos (dia)
                 </CardTitle>
-                <DollarSign className='h-4 w-4 text-muted-foreground' />
+                <Utensils className='h-4 w-4 text-muted-foreground' />
             </CardHeader>
 
             <CardContent className='space-y-1'>
