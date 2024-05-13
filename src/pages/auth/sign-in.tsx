@@ -7,6 +7,8 @@ import { Input } from '@/components/ui/input'
 import { Link } from 'react-router-dom'
 import { Label } from '@/components/ui/label'
 import { toast } from 'sonner'
+import { useMutation } from '@tanstack/react-query'
+import { signIn } from '@/api/sign-in'
 
 const signInForm = z.object({
     email: z.string().email(),
@@ -16,6 +18,10 @@ type signInForm = z.infer<typeof signInForm>
 
 export function SignIn() {
     const { register, handleSubmit, formState: { isSubmitting } } = useForm<signInForm>()
+
+    useMutation({
+        mutationFn: signIn
+    })
 
     function handleSignIn(data: signInForm) {
         toast.success(`teste ${data.email}`)
