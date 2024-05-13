@@ -83,12 +83,12 @@ export function SignUp() {
 
                         <div className='space-y-2'>
                             <Label htmlFor="phone">Seu e-mail</Label>
-                            <Input id="phone" type="email" {...register('phone')} />
+                            <Input id="email" type="email" {...register('email')} />
                         </div>
 
                         <div className='space-y-2'>
                             <Label htmlFor="email">Seu celular</Label>
-                            <Input id="email" type="email" {...register('email')} />
+                            <Input id="phone" type="text" {...register('phone')} />
                         </div>
 
 
