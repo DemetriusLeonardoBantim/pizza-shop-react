@@ -7,12 +7,15 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { toast } from 'sonner'
 import { Link, useNavigate } from 'react-router-dom'
+import { useMutation } from '@tanstack/react-query'
+import { registerRestaurant } from '@/api/register-restaurant'
 
 const SignUpForm = z.object({
     restauranteName: z.string(),
     managerName: z.string(),
     phone: z.string(),
     email: z.string().email(),
+    description: z.string()
 })
 
 type SignUpForm = z.infer<typeof SignUpForm>
@@ -21,8 +24,22 @@ export function SignUp() {
     const { register, handleSubmit, formState: { isSubmitting } } = useForm<SignUpForm>()
     const navigate = useNavigate()
 
-    function handleSignUp(data: SignUpForm) {
+    const { mutateAsync: registerRestaurantFn } = useMutation({
+        mutationFn: registerRestaurant
+    })
 
+    async function handleSignUp(data: SignUpForm) {
+        try {
+            await registerRestaurantFn({
+                restaurantName: data.restauranteName,
+                description: data.restauranteName,
+                email: data.email,
+                managerName: data.managerName,
+                phone: data.phone
+            })
+        } catch {
+            toast.error('Erro ao cadastrar restaurante.')
+        }
 
         toast.success(`teste ${data.email}, ${data.managerName}, ${data.phone}`, {
             action: {
@@ -72,6 +89,12 @@ export function SignUp() {
                         <div className='space-y-2'>
                             <Label htmlFor="email">Seu celular</Label>
                             <Input id="email" type="email" {...register('email')} />
+                        </div>
+
+
+                        <div className='space-y-2'>
+                            <Label htmlFor="email">Descrição</Label>
+                            <Input id="description" type="text" {...register('description')} />
                         </div>
 
                         <Button type="submit" className='w-full' disabled={isSubmitting} >
