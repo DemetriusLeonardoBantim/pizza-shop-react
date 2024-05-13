@@ -19,13 +19,22 @@ type signInForm = z.infer<typeof signInForm>
 export function SignIn() {
     const { register, handleSubmit, formState: { isSubmitting } } = useForm<signInForm>()
 
-    useMutation({
+    const { mutateAsync: authenticate } = useMutation({
         mutationFn: signIn
     })
 
-    function handleSignIn(data: signInForm) {
-        toast.success(`teste ${data.email}`)
-        console.log(data)
+    async function handleSignIn(data: signInForm) {
+        try {
+            await authenticate({ email: data.email })
+            toast.success('Enviamos um link de autentificação para seu e-mail.', {
+                action: {
+                    label: 'Reenviar',
+                    onClick: () => handleSignIn(data)
+                }
+            })
+        } catch {
+            toast.error('Credenciais inválidas.')
+        }
     }
 
     return (
