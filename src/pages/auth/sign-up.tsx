@@ -44,7 +44,7 @@ export function SignUp() {
         toast.success(`teste ${data.email}, ${data.managerName}, ${data.phone}`, {
             action: {
                 label: 'Login',
-                onClick: () => navigate('/sign-in')
+                onClick: () => navigate(`/sign-in?email=${data.email}`)
             }
         })
         console.log(data)
