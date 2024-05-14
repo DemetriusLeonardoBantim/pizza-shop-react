@@ -6,12 +6,12 @@ import { getProfile } from "@/api/get-profile";
 import { getManagedRestaurant } from "@/api/get-managed-restaurant";
 
 export function AccountMenu() {
-    const { data: profile } = useQuery({
+    const { data: profile, isLoading: isLoadingProfile } = useQuery({
         queryKey: ['profile'],
         queryFn: getProfile,
     })
 
-    const { data: managedRestaurant } = useQuery({
+    const { data: managedRestaurant, isLoading: isLoadingMannagedRestaurant } = useQuery({
         queryKey: ['managed-restaurant'],
         queryFn: getManagedRestaurant,
     })
