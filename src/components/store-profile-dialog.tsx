@@ -4,9 +4,17 @@ import { Button } from './ui/button'
 import { Label } from './ui/label'
 import { Input } from './ui/input'
 import { Textarea } from './ui/textarea'
+import { useQuery } from '@tanstack/react-query'
+import { getManagedRestaurant } from '@/api/get-managed-restaurant'
 
 
 export function StoreProfileDialog() {
+
+    const { data: managedRestaurant, isLoading: isLoadingMannagedRestaurant } = useQuery({
+        queryKey: ['managed-restaurant'],
+        queryFn: getManagedRestaurant,
+    })
+
     return (
         <DialogContent>
             <DialogHeader>
