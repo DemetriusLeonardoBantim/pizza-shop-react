@@ -3,6 +3,7 @@ import { DialogContent, DialogFooter, DialogHeader } from './ui/dialog'
 import { Button } from './ui/button'
 import { Label } from './ui/label'
 import { Input } from './ui/input'
+import { Textarea } from './ui/textarea'
 
 
 export function StoreProfileDialog() {
@@ -13,33 +14,24 @@ export function StoreProfileDialog() {
                 <DialogDescription>Atualize as informações do seu estabelecimento visíveis ao seu cliente</DialogDescription>
             </DialogHeader>
 
-
-
             <form>
                 <div className=' space-y-4 py-4'>
                     <div className='grid grid-cols-4 items-center gap-4'>
-                        <Label className='text-right'>
+                        <Label className='text-right' htmlFor='name'>
                             Nome
                         </Label>
                         <Input className='col-span-3' id='name' />
                     </div>
 
                     <div className='grid grid-cols-4 items-center gap-4'>
-                        <Label className='text-right'>
+                        <Label className='text-right' htmlFor='description'>
                             Descrição
                         </Label>
-                        <Input className='col-span-3' id='name' />
-                    </div>
-
-
-                    <div className='grid grid-cols-4 items-center gap-4'>
-                        <Label className='text-right'>
-                            Nome
-                        </Label>
-                        <Input className='col-span-3' id='name' />
+                        <Textarea className='col-span-3' id='description' />
                     </div>
                 </div>
             </form>
+
             <DialogFooter>
                 <Button variant="ghost">Cancelar</Button>
                 <Button type="submit" variant="default">Salvar</Button>
