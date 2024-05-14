@@ -11,11 +11,10 @@ import { useMutation } from '@tanstack/react-query'
 import { registerRestaurant } from '@/api/register-restaurant'
 
 const SignUpForm = z.object({
-    restauranteName: z.string(),
+    restaurantName: z.string(),
     managerName: z.string(),
     phone: z.string(),
     email: z.string().email(),
-    description: z.string()
 })
 
 type SignUpForm = z.infer<typeof SignUpForm>
@@ -31,8 +30,8 @@ export function SignUp() {
     async function handleSignUp(data: SignUpForm) {
         try {
             await registerRestaurantFn({
-                restaurantName: data.restauranteName,
-                description: data.restauranteName,
+                restaurantName: data.restaurantName,
+                description: data.restaurantName,
                 email: data.email,
                 managerName: data.managerName,
                 phone: data.phone
@@ -73,7 +72,7 @@ export function SignUp() {
                     <form action='' className='space-y-4' onSubmit={handleSubmit(handleSignUp)}>
                         <div className='space-y-2'>
                             <Label htmlFor="restauranteName">Nome do restaurange</Label>
-                            <Input id="restauranteName" type="text" {...register('restauranteName')} />
+                            <Input id="restauranteName" type="text" {...register('restaurantName')} />
                         </div>
 
                         <div className='space-y-2'>
@@ -89,12 +88,6 @@ export function SignUp() {
                         <div className='space-y-2'>
                             <Label htmlFor="email">Seu celular</Label>
                             <Input id="phone" type="text" {...register('phone')} />
-                        </div>
-
-
-                        <div className='space-y-2'>
-                            <Label htmlFor="email">Descrição</Label>
-                            <Input id="description" type="text" {...register('description')} />
                         </div>
 
                         <Button type="submit" className='w-full' disabled={isSubmitting} >
