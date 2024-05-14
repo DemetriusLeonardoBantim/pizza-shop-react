@@ -31,7 +31,6 @@ export function SignUp() {
         try {
             await registerRestaurantFn({
                 restaurantName: data.restaurantName,
-                description: data.restaurantName,
                 email: data.email,
                 managerName: data.managerName,
                 phone: data.phone
