@@ -4,6 +4,7 @@ import { Building, ChevronDown, LogOut } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { getProfile } from "@/api/get-profile";
 import { getManagedRestaurant } from "@/api/get-managed-restaurant";
+import { Skeleton } from "./ui/skeleton";
 
 export function AccountMenu() {
     const { data: profile, isLoading: isLoadingProfile } = useQuery({
@@ -21,7 +22,7 @@ export function AccountMenu() {
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
                 <Button variant="outline" className="flex items-center gap-2 select-none">
-                    <span>{managedRestaurant?.name}</span>
+                    <span>{isLoadingMannagedRestaurant ? (<Skeleton className="h-4 w-40" />) : managedRestaurant?.name}</span>
                     <ChevronDown />
                 </Button>
             </DropdownMenuTrigger>
