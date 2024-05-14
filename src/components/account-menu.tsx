@@ -28,7 +28,7 @@ export function AccountMenu() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56">
                 <DropdownMenuLabel className="flex flex-col">
-                    <span className="text-xs font-normal text-muted-foreground">{profile?.email}</span>
+                    <span className="text-xs font-normal text-muted-foreground">{isLoadingProfile ? (<Skeleton className="h-32 w-24" />) : profile?.email}</span>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
