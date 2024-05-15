@@ -2,11 +2,18 @@ import { DialogContent, DialogHeader } from "@/components/ui/dialog";
 import { TableCell, Table, TableBody, TableRow, TableHeader, TableFooter } from "@/components/ui/table";
 import { DialogDescription, DialogTitle } from "@radix-ui/react-dialog";
 
-export interface OrderDetailsProps { }
-
-export function OrderDetails(props: OrderDetailsProps) {
+export interface OrderDetailsProps {
+    orderId: string
+    open: boolean
+}
+export function OrderDetails({ orderId, open }: OrderDetailsProps) {
+    /*     const { data: order } = useQuery({
+            queryKey: ['order', orderId],
+            queryFn: () => getOrderDetails({ orderId }),
+            enabled: open,
+        })
+     */
     return (
-
         <DialogContent>
             <DialogHeader>
                 <DialogTitle>
