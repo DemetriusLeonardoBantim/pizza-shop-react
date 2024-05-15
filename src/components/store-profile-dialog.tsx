@@ -4,11 +4,13 @@ import { Button } from './ui/button'
 import { Label } from './ui/label'
 import { Input } from './ui/input'
 import { Textarea } from './ui/textarea'
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import { getManagedRestaurant } from '@/api/get-managed-restaurant'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { updateProfile } from '@/api/update-profile'
+import { toast } from 'sonner'
 
 const storeProfileSchema = z.object({
     name: z.string().min(1),
@@ -32,7 +34,21 @@ export function StoreProfileDialog() {
         }
     })
 
-    console.log(managedRestaurant)
+    const { mutateAsync: updateProfilefn } = useMutation({
+        mutationFn: updateProfile,
+    })
+
+    async function handleUpdateProfile(data: StoreProfileSchema) {
+        try {
+            await updateProfilefn({
+                name: data.name,
+                description: data.description
+            })
+            toast.success('Perfil atualizado com sucesso!')
+        } catch {
+            toast.success('Falha ao atualizar o perfil, tente novamente!')
+        }
+    }
 
     return (
         <DialogContent>
