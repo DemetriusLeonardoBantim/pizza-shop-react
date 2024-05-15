@@ -1,5 +1,9 @@
 import { api } from '@/lib/axios'
 
+export interface GetOrdersQuery {
+    pageIndex?: number | null
+}
+
 interface getOrdersResponse {
     orders: {
         orderId: string
