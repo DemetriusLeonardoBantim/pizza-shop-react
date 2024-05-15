@@ -9,10 +9,29 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select'
+import { z } from 'zod'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+const orderFiltersSchema = z.object({
+    orderId: z.string().optional(),
+    customerName: z.string().optional(),
+    status: z.string().optional(),
+})
+
+type OrderFiltersSchema = z.infer<typeof orderFiltersSchema>
 
 export function OrderTableFilters() {
+    const { register, handleSubmit } = useForm<OrderFiltersSchema>({
+        resolver: zodResolver(orderFiltersSchema)
+    })
+
+    function handleFilter(data: OrderFiltersSchema) {
+        console.log(data)
+    }
+
     return (
-        <form className="flex items-center gap-2">
+        <form className="flex items-center gap-2" onSubmit={handleSubmit(handleFilter)}>
             <span className="text-sm font-semibold">Filtros:</span>
             <Input placeholder="ID do pedido" className="h-8 w-auto" />
             <Input placeholder="Nome do cliente" className="h-8 w-[320px]" />
