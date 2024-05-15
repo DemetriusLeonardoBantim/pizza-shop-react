@@ -26,7 +26,7 @@ export function StoreProfileDialog() {
         queryFn: getManagedRestaurant,
     })
 
-    const { register, handleSubmit } = useForm<StoreProfileSchema>({
+    const { register, handleSubmit, formState: { isSubmitting } } = useForm<StoreProfileSchema>({
         resolver: zodResolver(storeProfileSchema),
         values: {
             name: managedRestaurant?.name ?? '',
@@ -46,7 +46,7 @@ export function StoreProfileDialog() {
             })
             toast.success('Perfil atualizado com sucesso!')
         } catch {
-            toast.success('Falha ao atualizar o perfil, tente novamente!')
+            toast.error('Falha ao atualizar o perfil, tente novamente!')
         }
     }
 
@@ -57,7 +57,7 @@ export function StoreProfileDialog() {
                 <DialogDescription>Atualize as informações do seu estabelecimento visíveis ao seu cliente</DialogDescription>
             </DialogHeader>
 
-            <form>
+            <form onSubmit={handleSubmit(handleUpdateProfile)}>
                 <div className=' space-y-4 py-4'>
                     <div className='grid grid-cols-4 items-center gap-4'>
                         <Label className='text-right' htmlFor='name'>
@@ -73,12 +73,14 @@ export function StoreProfileDialog() {
                         <Textarea className='col-span-3' id='description' {...register('description')} />
                     </div>
                 </div>
+
+
+                <DialogFooter>
+                    <Button variant="ghost">Cancelar</Button>
+                    <Button type="submit" variant="default" disabled={isSubmitting}>Salvar</Button>
+                </DialogFooter>
             </form>
 
-            <DialogFooter>
-                <Button variant="ghost">Cancelar</Button>
-                <Button type="submit" variant="default">Salvar</Button>
-            </DialogFooter>
         </DialogContent>
     )
 }
