@@ -1,4 +1,4 @@
-import { DialogDescription, DialogTitle } from '@radix-ui/react-dialog'
+import { DialogClose, DialogDescription, DialogTitle } from '@radix-ui/react-dialog'
 import { DialogContent, DialogFooter, DialogHeader } from './ui/dialog'
 import { Button } from './ui/button'
 import { Label } from './ui/label'
@@ -76,7 +76,10 @@ export function StoreProfileDialog() {
 
 
                 <DialogFooter>
-                    <Button variant="ghost">Cancelar</Button>
+                    <DialogClose asChild>
+                        <Button variant="ghost">Cancelar</Button>
+                    </DialogClose>
+
                     <Button type="submit" variant="default" disabled={isSubmitting}>Salvar</Button>
                 </DialogFooter>
             </form>
