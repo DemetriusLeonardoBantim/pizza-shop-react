@@ -1,3 +1,4 @@
+import { getOrderDetails } from "@/api/get-order-details";
 import { DialogContent, DialogHeader } from "@/components/ui/dialog";
 import { TableCell, Table, TableBody, TableRow, TableHeader, TableFooter } from "@/components/ui/table";
 import { DialogDescription, DialogTitle } from "@radix-ui/react-dialog";
@@ -7,12 +8,13 @@ export interface OrderDetailsProps {
     open: boolean
 }
 export function OrderDetails({ orderId, open }: OrderDetailsProps) {
-    /*     const { data: order } = useQuery({
-            queryKey: ['order', orderId],
-            queryFn: () => getOrderDetails({ orderId }),
-            enabled: open,
-        })
-     */
+
+    const { data: order } = useQuery({
+        queryKey: ['order', orderId],
+        queryFn: () => getOrderDetails({ orderId }),
+        enabled: open,
+    })
+
     return (
         <DialogContent>
             <DialogHeader>
