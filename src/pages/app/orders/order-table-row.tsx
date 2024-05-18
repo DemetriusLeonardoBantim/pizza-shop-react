@@ -59,7 +59,7 @@ export function OrderTableRow({ order }: OrderTableRowProps) {
                 </Button>
             </TableCell>
             <TableCell>
-                <Button variant="ghost" size="xs">
+                <Button variant="ghost" size="xs" disabled={!['pending', 'processing'].includes(order.status)}>
                     <X className="mr-2 h-3 w-3" />
                     Cancelar
                 </Button>
