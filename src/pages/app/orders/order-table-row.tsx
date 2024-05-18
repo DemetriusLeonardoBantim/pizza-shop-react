@@ -9,6 +9,8 @@ import { OrderStatus } from '@/components/order-status'
 import { formatDistanceToNow } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import { useState } from 'react'
+import { useMutation } from '@tanstack/react-query'
+import { cancelOrder } from '@/api/cancel-order'
 
 interface OrderTableRowProps {
     order: {
@@ -22,6 +24,10 @@ interface OrderTableRowProps {
 
 export function OrderTableRow({ order }: OrderTableRowProps) {
     const [isDetailsOpen, setIsDetailsOpen] = useState(false)
+
+    const { mutateAsync: cancelOrderFn } = useMutation({
+        mutationFn: cancelOrder
+    })
 
     return (
         <TableRow>
@@ -59,7 +65,7 @@ export function OrderTableRow({ order }: OrderTableRowProps) {
                 </Button>
             </TableCell>
             <TableCell>
-                <Button variant="ghost" size="xs" disabled={!['pending', 'processing'].includes(order.status)}>
+                <Button variant="ghost" size="xs" disabled={!['pending', 'processing'].includes(order.status)} onClick={() => cancelOrderFn({ orderId: order.orderId })}>
                     <X className="mr-2 h-3 w-3" />
                     Cancelar
                 </Button>
