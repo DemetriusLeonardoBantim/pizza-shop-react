@@ -26,7 +26,12 @@ export function OrderTableRow({ order }: OrderTableRowProps) {
     const [isDetailsOpen, setIsDetailsOpen] = useState(false)
 
     const { mutateAsync: cancelOrderFn } = useMutation({
-        mutationFn: cancelOrder
+        mutationFn: cancelOrder,
+        async onSuccess(_, { orderId }) {
+            const ordersListCache = {
+
+            }
+        }
     })
 
     return (
